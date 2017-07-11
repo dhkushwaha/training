@@ -6,8 +6,8 @@ function Table() {
     
       this.newDeck = makeDeck();
       this.shuffleDeck = Shuffle(deck);
-      this.removeCard = rCard();
-      this.addCard = addCard(deck);
+      // this.removeCard = rCard();
+      // this.addCard = addCard(deck);
        
       function Card(values, suites){
       this.value = values;
@@ -23,15 +23,15 @@ function Table() {
                   'Clubs'];
           
       var values = ['A', 
-                  '2', 
-                  '3', 
-                  '4', 
-                  '5', 
-                  '6', 
-                  '7', 
-                  '8', 
-                  '9', 
-                  '10', 
+                  2, 
+                  3, 
+                  4, 
+                  5, 
+                  6, 
+                  7, 
+                  8, 
+                  9, 
+                  10, 
                   'J',
                   'Q', 
                   'K'];
@@ -42,6 +42,7 @@ function Table() {
             for (var j=0; j < values.length;j++){
 
             var newcard = new Card(values[j],suites[i]);
+              
             deck.push(newcard);
              
            }
@@ -66,7 +67,7 @@ function Table() {
       console.log(deck);
     }
     
-    function rCard(){
+   /*function rCard(){
     if (this.deck.length > 0)
     return this.deck.shift();
    
@@ -76,8 +77,9 @@ function Table() {
 
 function addCard(deck){
   this.deck.push(deck);
-    }   
-  }
+    }  */
+    
+  } 
   Deck();
     
   function Letsplay(){
@@ -127,21 +129,187 @@ function addCard(deck){
           
           var randCard = Math.floor(Math.random() * deck.length);
           var cardTaken = deck[randCard];
-          deck.splice(randCard, 1);
+          deck.splice(cardTaken, 1);
           
           return cardTaken;
         }
         console.log(Players);
+        console.log("lets calculate the score of the each players");
+          
+        for (var j = 0; j < noOfP; j++){
+              
+               for (var i = 0; i < cardToDist; i++) {
+                
+               Players[j].hand[i].value;
+                   
+                switch (Players[j].hand[i].value) {
+                        
+                    case "A":
+                        Players[j].hand[i].value =  14;
+
+                        break;
+                        
+                    case 2:
+                      Players[j].hand[i].value =  2;
+ 
+                        break;
+                    case 3:
+                        Players[j].hand[i].value =  3;
+
+                        break;
+                    case 4:
+                        Players[j].hand[i].value = 4;
+
+                        break;
+                    case 5:
+                        Players[j].hand[i].value = 5;
+
+                        break;
+                    case 6:
+                        Players[j].hand[i].value =  6;
+
+                        break;
+                    case 7:
+                        Players[j].hand[i].value =  7;
+
+                        break;
+                    case 8:
+                        Players[j].hand[i].value =  8;
+
+                        break;
+                    case 9:
+                        Players[j].hand[i].value =  9;
+
+                        break;
+                    case 10:
+                        Players[j].hand[i].value =  10;
+
+                        break;
+                    case "J":
+                        Players[j].hand[i].value =  11;
+
+                        break;
+                    case "Q":
+                        Players[j].hand[i].value =  12;
+
+                        break;
+                    case "K":
+                        Players[j].hand[i].value =  13;
+
+                        break;
+                    
+
+                   
+                }
+               /*console.log(Players[j].hand[0].value);  */                 
+               var scoresOfPlayers = [Players[j].hand[0].value, Players[j].hand[1].value, Players[j].hand[2].value,
+                                      Players[j].hand[3].value, Players[j].hand[4].value, Players[j].hand[5].value, 
+                                      Players[j].hand[6].value, Players[j].hand[7].value, Players[j].hand[8].value, 
+                                      Players[j].hand[9].value,].reduce(add, 0);
+
+               function add(a, b) {
+                 
+               return a + b;
+                   
+                 }
+
+               console.log(scoresOfPlayers);
+               
+              
+                       
+              
+                }
+
+             }
+             
+            
+       /* function getCardValue() {
+        var value = 0;
+        var totalValues=0;
+        for (var j = 0; j < noOfP; j++) {
+            for (var i = 0; i < cardToDist; i++) {
+
+
+                switch (Players[j].hand[i].value) {
+                        
+                    case "A":
+                        totalValues = value + 14;
+
+                        break;
+                        
+                    case 2:
+                      totalValues = value + 2;
+ 
+                        break;
+                    case 3:
+                        totalValues = value + 3;
+
+                        break;
+                    case 4:
+                        totalValues = value + 4;
+
+                        break;
+                    case 5:
+                        totalValues = value + 5;
+
+                        break;
+                    case 6:
+                        totalValues = value + 6;
+
+                        break;
+                    case 7:
+                        totalValues = value + 7;
+
+                        break;
+                    case 8:
+                        totalValues = value + 8;
+
+                        break;
+                    case 9:
+                        totalValues = value + 9;
+
+                        break;
+                    case 10:
+                        totalValues = value + 10;
+
+                        break;
+                    case "J":
+                        totalValues = value + 11;
+
+                        break;
+                    case "Q":
+                        totalValues = value + 12;
+
+                        break;
+                    case "K":
+                        totalValues = value + 13;
+
+                        break;
+                    
+
+                    default:
+                        totalValues = 0;
+                        break;
+                }
+
+                console.log(totalValues);
+            }
+        }
+    }
+    getCardValue(); */
+
+       
       }
       cardDistribution();
-        
-
+      
+       
     
     } else {
         console.log("Sorry!! we can have maximum of 6 players on table");
     }
     
   }
+    
     addPlayer();
     
   }
@@ -149,4 +317,3 @@ function addCard(deck){
   
 }
 Table();
-
