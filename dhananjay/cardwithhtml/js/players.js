@@ -1,100 +1,14 @@
-function Table() {
-  
-  this.deck= [];
-  
-  function Deck(){
-    
-      this.newDeck = makeDeck();
-      this.shuffleDeck = Shuffle(deck);
-      // this.removeCard = rCard();
-      // this.addCard = addCard(deck);
-       
-      function Card(values, suites){
-      this.value = values;
-      this.suites = suites;
-      this.name = suites +' '+ values ;
-      console.log(this.name);
-      }
-      
-      function makeDeck(){
-      var suites = ['Heart',
-                  'Diamonds',
-                  'Spades',
-                  'Clubs'];
-          
-      var values = ['A', 
-                  2, 
-                  3, 
-                  4, 
-                  5, 
-                  6, 
-                  7, 
-                  8, 
-                  9, 
-                  10, 
-                  'J',
-                  'Q', 
-                  'K'];
-       deck = [];
-    
-       for(var i=0; i < suites.length; i++)
-         {
-            for (var j=0; j < values.length;j++){
+  function Player(name) {
+        this.name = name;
+        this.hand = [];
 
-            var newcard = new Card(values[j],suites[i]);
-              
-            deck.push(newcard);
-             
-           }
-        }
-   return deck;      
-    
-   }
-    
-   function Shuffle(){
-    
-      var i, j, temp;
+  }
 
-       for (i = this.deck.length - 1;  i > 0;  i--){
-
-       j = Math.floor(Math.random() * (i+1));
-         
-       temp = this.deck[i];
-       this.deck[i] = this.deck[j];
-       this.deck[j] = temp;
-     }
-
-      console.log(deck);
-    }
-    
-   /*function rCard(){
-    if (this.deck.length > 0)
-    return this.deck.shift();
-   
-  else
-    return null;
-}
-
-function addCard(deck){
-  this.deck.push(deck);
-    }  */
-    
-  } 
-  Deck();
-    
-  function Letsplay(){
-      
   this.Players = [];
   this.noOfPlayers = Players.length;
     
   function addPlayer() {
     
-       function Player(name, id) {
-        this.id = id;
-        this.name = name;
-        this.hand = [];
-        }
-
         var playerName = ['A', 'B','C','D','E'];
 
         for (var i = 0; i < playerName.length; i++) {
@@ -114,8 +28,8 @@ function addCard(deck){
       
       function cardDistribution(){
         
-        var remainingCard = (deck.length % noOfP );
-        var cardToDist = ((deck.length - remainingCard) / noOfP );
+        var remainingCard = (card.length % noOfP );
+        var cardToDist = ((card.length - remainingCard) / noOfP );
         for (var i = 0; i < cardToDist; i++){
           
           for (var j = 0; j < noOfP; j++){
@@ -127,15 +41,18 @@ function addCard(deck){
         
         function cardAccepted() {
           
-          var randCard = Math.floor(Math.random() * deck.length);
-          var cardTaken = deck[randCard];
-          deck.splice(cardTaken, 1);
+          var randCard = Math.floor(Math.random() * card.length);
+          var cardTaken = card[randCard];
+          card.splice(cardTaken, 1);
           
           return cardTaken;
         }
           
         console.log(this.Players);
-        console.log("lets calculate the score of the each players");
+
+
+
+        console.log("lets calculate the handValue  of the each players");
           
         for (var j = 0; j < noOfP; j++){
               
@@ -202,13 +119,12 @@ function addCard(deck){
 
                    
                 }
-               /*console.log(Players[j].hand[0].value);  */                 
-              
+               
                    
                   
                 }
             
-               for (var i = 0; i < cardToDist; i++) {
+               
                var scoresOfPlayers = [Players[j].hand[0].value, Players[j].hand[1].value, Players[j].hand[2].value,
                                       Players[j].hand[3].value, Players[j].hand[4].value, Players[j].hand[5].value, 
                                       Players[j].hand[6].value, Players[j].hand[7].value, Players[j].hand[8].value, 
@@ -220,9 +136,9 @@ function addCard(deck){
                return a + b;
                    
                  }
-               }
-               console.log(scoresOfPlayers);
-               function sum(scoresOfPlayers) {
+               
+               // console.log(scoresOfPlayers);
+               function handValue(scoresOfPlayers) {
                    
                var scoresOfPlayers = [Players[j].hand[0].value, Players[j].hand[1].value, Players[j].hand[2].value,
                                       Players[j].hand[3].value, Players[j].hand[4].value, Players[j].hand[5].value, 
@@ -241,7 +157,7 @@ function addCard(deck){
               
                   
               }
-              sum(scoresOfPlayers);
+              handValue(scoresOfPlayers);
              }
              
              
@@ -255,11 +171,5 @@ function addCard(deck){
     }
     
   }
-    
-    addPlayer();
-    
-  }
-  Letsplay();  
+addPlayer();
   
-}
-Table();
