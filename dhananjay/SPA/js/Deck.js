@@ -3,7 +3,12 @@ function Deck() {
     this.deck = [];
 
     this.makeDeck = function() {
-        var suite = ['Heart', 'Diamonds', 'Spades', 'Clubs'];
+        var suite = ['Heart',
+                     'Diamonds',
+                     'Spades',
+                     'Clubs'
+                     ];
+
         var value = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
         for (var i = 0; i < suite.length; i++) {
             for (var j = 0; j < value.length; j++) {
@@ -26,20 +31,7 @@ function Deck() {
             this.cards[index] = this.cards[shuffleIndex];
             this.cards[shuffleIndex] = temp;
         }
-        // console.log(this.cards);
-       return this.cards;
+        
     };
-
-    this.addCard = function(card) {
-        deck.push(card);
-    };
-
-    this.removeCard = function(card) {
-        if (deck.length > 0)
-            return deck.pop();
-        else
-            return null;
-    };
-
 
 }

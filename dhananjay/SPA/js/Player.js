@@ -8,44 +8,6 @@ function Player(name, id) {
 }
 
 
-function addCard(card) {
-    hand.push(card);
-}
-
-function removeCard(card) {
-    if (hand.length > 0)
-        return hand.pop();
-    else
-        return null;
-}
-
-function distributeCard(shuffledCards) {
-
-    var cards = shuffledCards;
-    console.log("Cards Distributed");
-   
-
-    var cardMod = cards.length % this.Players.length;
-    this.distCount = ((cards.length - cardMod) / this.Players.length);
-
-    for (var i = 0; i < distCount; i++) {
-        for (var j = 0; j < Players.length; j++) {
-            var takenCard = takeCard();
-            Players[j].hand.push(takenCard);
-        }
-    }
-
-
-    function takeCard() {
-        var randCard = Math.floor(Math.random() * cards.length);
-        var takenCard = cards[randCard];
-        cards.splice(randCard, 1);
-
-        return takenCard;
-    }
-    handValue();
-}
-
 
 
 function handValue() {
@@ -102,53 +64,40 @@ function handValue() {
 
         }
         console.log(Players[p]);
-
     }
 
-    sortedPlayers();
+    displayOnce();
+  }
+
+function displayOnce() {
+
+  var compiled = _.template($("#player-template").html(), Players);
+  $('#displayPlayers').append(compiled);
+
+  sortedPlayers();
+
+
+  _.each(Players, function(player) {
+      player.handValue = 0;
+      // console.log(player.name + " => " + player.handValue);
+      _.each(player.hand, function(handCard) {
+          handCard = 0;
+          // console.log(handCard.name);
+      });
+  });
 }
 
-Players[p].handValue = 0;
 function sortedPlayers() {
     Players.sort(function(a, b) {
 
         return a.handValue - b.handValue;
     });
+
     console.log("Players Sorted based on Hand Values");
+
     _.each(Players, function(player) {
         console.log(player);
-
-        // console.log(player.name);
-        // console.log(player.hand[0].name);
-        // console.log(distCount);
     });
-
     Players.reverse();
-
-   var compiled = _.template($("#player-template").html(), Player);
-   $('#displayPlayers').append(compiled);
-
-   
-   _.each(Players, function(player) {
-
-      player.handValue = 0;
-      _.each(player.hand, function(h) {
-        h = 0;
-
-   });
-});
-
-    // window.setInterval(Table, 500);
-
-
-
-   function timer(){
-      document.getElementById("displayPlayers").innerHTML = "";
-      Table();
-
-   }
-   setTimeout(timer, 1500);
-
-
 
 }
