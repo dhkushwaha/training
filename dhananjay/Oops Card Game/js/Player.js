@@ -1,77 +1,35 @@
-function Player(pname) {
-	this.pname = pname;
-	this.cards = [];
-	
-	var score = 0;
-    console.log(this.pname);
+function Player(name) {
 
-    this.cardDistribution = function () {
-    	var hand = [];
-
-    var cardInDeck = (deck.length % this.players.length);
+    this.name = name;
+    this.hand = [];
 
 
-    var cardInHand = (deck.length - cardInDeck) / this.players.length;
-    // this.takeCardFromDeck = function () {
-    	var randCard = Math.floor(Math.random() * deck.length);
-    	var pickedCard = deck[randCard];
-    	
-    	var a = deck.splice(pickedCard, 1);
-
-    	console.log(a);
-    	for(var i = 0; i < this.pName.length ; i++) {
-    		console.log(players[0][i]);
-    	}
-    	
-
-    // };
-
-    // takeCardFromDeck();
-
-    for(var i = 0; i < cardInHand; i++) {
-
-    		for(var j = 0; j < this.pName.length; j++) {
-    			// var pickedCard = takeCardFromDeck();
-    			players[0][j].hand.push(pickedCard);
-    		}
-    	}
+    this.giveCardToPlayer = function(card) {
+        this.hand.push(card);
     };
-    console.log(this.players);
-    cardDistribution();
-    
-    
-   
-    
-	// this.pscore = function () {
 
-		
-	// 	var hand = [];
+    this.acceptCardFromPlayer = function() {
 
-	// 	for(var i = 0; i < this.cards.length; i++) {
+        if (this.hand.length > 0)
+            return this.hand.pop();
+        else
+            return 0;
+    };
 
-	// 		var cvalue = this.cards[i].value();
+    this.handValue = function() {
 
-	// 		if( cvalue.length == 1) {
-
-	// 			score += value[0];
-	// 		} else {
-	// 			hand.push(value);
-	// 		}
-	// 	}
-
-	// 	return score;
- //    };
-
- //    console.log(score);
-
-
-// var t = new Table();
-// var recievedPlayers = t.getPlayers();
-// console.log(recievedPlayers);
+        var score = 0;
+        var cardValue = 0;
+        for (var i = 0; i < this.hand.length; i++) {
+            if (this.hand[i] == 0)
+                cardValue = 0;
+            else{
+                cardValue = this.hand[i].getValue();
+              }
+            score = score + parseInt(cardValue);
+        }
+        return score;
+    };
 
 
 }
-console.log(this.pName.length);
-Player(this.players);
-
-

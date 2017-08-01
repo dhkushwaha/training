@@ -1,13 +1,12 @@
-function Card(suits, value) {
-    this.suits = suits;
+function Card(value, suite) {
     this.value = value;
-    this.name = suits +' '+ value ;
-
+    this.suite = suite;
+    this.name = suite + ' ' + value;
 
     console.log(this.name);
-
-    this.getValue = function () {
-
+     
+    this.getValue = function() {
+        
 	    if (this.value == 'J') {
 	        return [11];
 
@@ -22,11 +21,9 @@ function Card(suits, value) {
 	        return [14];
 
 	    }else {
-	        return parseInt(this.value, this.value);
+	        return parseInt(this.value);
 	    }
-    };
 
+        
+    };
 }
-Card(this.suits, this.value);
-var s = new Deck();
-console.log(s.this.getsuits);
